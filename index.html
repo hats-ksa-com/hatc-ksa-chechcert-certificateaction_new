@@ -1,64 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Certificate Verification</title>
     <style>
+        /* 🎨 মোবাইল-ফাস্ট গ্লোবাল স্টাইল */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         html, body { 
             font-family: "Times New Roman", Times, serif; 
             text-align: center; 
-            background-color: #ffffff !important; 
-            margin: 0 !important;
-            padding: 0 !important;
-            width: 100% !important;
-            overflow-x: hidden !important;
+            background-color: #ffffff; 
+            width: 100%;
+            overflow-x: hidden; /* স্ক্রিন যেন ডানে-বামে কাপাকাপি না করে */
             -webkit-text-size-adjust: 100%;
         }
         
         .wrapper {
-            width: 100% !important;
-            max-width: 100% !important; 
-            margin: 0 auto !important;
-            padding: 0 !important; 
-            box-sizing: border-box !important;
+            width: 100%;
+            max-width: 480px; /* একটি আদর্শ মোবাইল স্ক্রিনের সর্বোচ্চ উইডথ */
+            margin: 0 auto;
+            padding: 0 0 20px 0; 
         }
 
-        /* 🖼️ Responsive Header Image - দুই পাশে কোনো ফাঁকা থাকবে না */
+        /* 🖼️ পিওর মোবাইল লোগো (ফুল স্ক্রিন উইডথ, দুই পাশে কোনো গ্যাপ থাকবে না) */
         .top-logo {
             display: block;
-            width: 100% !important;
-            height: auto !important;
-            margin: 0 !important;
-            padding: 0 !important;
+            width: 100%;
+            height: auto;
+            margin: 0;
+            padding: 0;
         }
 
-        /* 📏 Ash Color Bold Header Divider Line */
+        /* 📏 মোটা ছাই রঙের ডিভাইডার লাইন */
         .header-divider {
             border: 0;
             height: 4px; 
             background-color: #808080; 
             width: 100%; 
-            margin: 0px 0px 20px 0px !important;
+            margin: 0 0 15px 0;
         }
 
-        /* কনটেন্ট এরিয়া */
+        /* কনটেন্ট এরিয়া (মোবাইলের দুই পাশে হালকা একটু মার্জিন রাখবে) */
         .content-area {
-            padding: 0 15px;
-            box-sizing: border-box;
+            padding: 0 12px;
             width: 100%;
         }
         
-        /* 🎯 ডেস্কটপের জন্য ইনস্ট্রাকশন টেক্সট */
+        /* 🎯 ইনস্ট্রাকশন টেক্সট - মোবাইলে ১২ পিক্সেল সাইজে একদম ভেঙে না গিয়ে ১ লাইনে লক থাকবে */
         .instruction { 
-            font-size: 21px; 
+            font-size: 12px !important; 
             color: #000; 
             margin-top: 5px;
-            margin-bottom: 15px; 
+            margin-bottom: 12px; 
             display: block;
             width: 100%;
-            line-height: 1.5;
-            white-space: nowrap; 
+            white-space: nowrap !important; 
+            overflow: visible;
+            text-align: center;
         }
         
         .top-divider {
@@ -66,200 +70,149 @@
             height: 2px;
             background-color: #000; 
             width: 100%; 
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
-        /* 🔍 Search Box Styling */
+        /* 🔍 মোবাইল ফ্রেন্ডলি সার্চ বক্স (পাশাপাশি পারফেক্ট ফিট) */
         .search-box { 
-            margin: 20px 0 30px 0; 
-            font-size: 22px; 
+            margin: 20px 0; 
             width: 100%; 
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 6px;
         }
-        input[type="text"] { 
-            padding: 10px 12px; 
-            width: 280px; 
-            border: 1px solid #7f7f7f; 
+        
+        .label-text { 
             font-size: 18px; 
-            font-family: "Times New Roman"; 
-            box-sizing: border-box; 
+            font-family: "Times New Roman";
+            font-weight: bold;
         }
+        
+        input[type="text"] { 
+            padding: 10px 8px; 
+            width: 50%; /* মোবাইলের অর্ধেক জায়গা ইনপুট বক্স নিবে */
+            border: 1px solid #7f7f7f; 
+            font-size: 16px; 
+            font-family: "Times New Roman"; 
+            outline: none;
+        }
+        
         button { 
-            padding: 10px 20px; 
+            padding: 10px 4px; 
+            width: 38%; /* বাকি জায়গা বাটন নিবে */
             background-color: #f2f2f2; 
             border: 1px solid #7f7f7f; 
             cursor: pointer; 
-            font-size: 18px; 
+            font-size: 14px; 
             font-family: "Times New Roman"; 
             color: #000; 
-            box-sizing: border-box; 
+            white-space: nowrap;
         }
         button:hover { background-color: #e6e6e6; }
-        .label-text { font-size: 22px; font-family: "Times New Roman"; }
         
-        /* 🔄 Details & Back to Home */
+        /* 🔄 টেবিল হেডার ও ব্যাক বাটন */
         .details-header {
             display: none;
             justify-content: space-between; 
             align-items: center;
-            margin: 0 auto 25px auto;
-            width: 70%;
+            margin: 0 auto 15px auto;
+            width: 100%;
         }
-        .details-title { font-size: 24px; font-weight: bold; color: #000; } 
-        .back-home { font-size: 23px; font-weight: bold; color: #330066; text-decoration: underline; cursor: pointer; } 
+        .details-title { font-size: 18px; font-weight: bold; color: #000; } 
+        .back-home { font-size: 15px; font-weight: bold; color: #330066; text-decoration: underline; cursor: pointer; } 
 
-        /* 📦 Table Container External Box (Desktop) */
+        /* 📦 রেজাল্ট টেবিল কন্টেইনার (মোবাইল স্ক্রিনে ১০০% ফিট হয়ে বড় দেখাবে) */
         .table-container {
             display: none;
             border: 2px solid #000;
-            border-radius: 35px; 
-            padding: 25px 40px;
-            box-sizing: border-box !important;
+            border-radius: 15px; 
+            padding: 12px 10px;
             background: #fff;
-            width: 70% !important; 
-            margin: 0 auto !important; 
+            width: 100%; 
+            margin: 0 auto; 
         }
 
-        /* 🎯 Table Styling */
+        /* 🎯 টেবিল ডিজাইন */
         .result-table { 
-            width: 100% !important; 
+            width: 100%; 
             border-collapse: collapse; 
         }
         
         .result-table tr { 
-            border-bottom: 2px solid #808080 !important; 
+            border-bottom: 2px solid #808080; 
         } 
         
         .result-table td { 
-            padding: 12px 5px; 
-            font-size: 22px; 
+            padding: 10px 2px; 
+            font-size: 15px; /* মোবাইলে পড়ার জন্য একদম ক্লিয়ার সাইজ */
             color: #000; 
             vertical-align: bottom; 
-            box-sizing: border-box; 
-            text-align: left !important; 
+            text-align: left; 
         }
         
-        .result-table td.field-name { width: 35%; font-weight: bold !important; } 
-        .result-table td.field-value { width: 65%; padding-left: 15px; word-break: break-word; }
+        .result-table td.field-name { 
+            width: 38%; 
+            font-weight: bold; 
+        } 
         
-        .duration-container { display: flex; gap: 10px; width: 100%; text-align: left; flex-wrap: wrap; }
+        .result-table td.field-value { 
+            width: 62%; 
+            padding-left: 6px; 
+            word-break: break-word; /* লেখা বড় হলে নিচে নামবে, টেবিল ভাঙবে না */
+        }
         
-        /* 📜 Genuine Notice */
+        .duration-container { 
+            display: flex; 
+            gap: 4px; 
+            width: 100%; 
+            text-align: left; 
+            flex-wrap: wrap; 
+        }
+        
+        /* 📜 জেনুইন নোটিশ */
         .genuine-notice {
             display: none;
-            font-size: 20px; 
+            font-size: 14px; 
             color: #000;
-            margin-top: 25px;
-            margin-bottom: 25px;
+            margin: 20px 0;
             text-align: center;
             width: 100%;
+            line-height: 1.4;
         }
 
-        /* 📏 Contact section Divider Line */
+        /* 📏 কন্টাক্ট ডিভাইডার */
         .contact-divider {
             border: 0;
             height: 2px;
             background-color: #808080; 
-            width: 70%; 
-            margin: 0 auto 25px auto;
+            width: 100%; 
+            margin: 20px 0;
         }
 
-        /* 📞 Contact Us Section */
+        /* 📞 কন্টাক্ট সেকশন */
         .contact-section {
             display: none;
-            margin-top: 25px;
+            margin-top: 20px;
             text-align: center;
             width: 100%;
         }
-        .contact-title { font-size: 25px; font-weight: bold; color: #000; margin-bottom: 15px; } 
-        .contact-details { font-size: 21px; color: #000; line-height: 1.6; } 
+        .contact-title { font-size: 18px; font-weight: bold; color: #000; margin-bottom: 10px; } 
+        .contact-details { font-size: 14px; color: #000; line-height: 1.5; } 
         .contact-details a { color: blue; text-decoration: underline; }
 
+        /* ⚠️ এরর বক্স */
         .error-container {
             display: none;
-            margin: 30px auto;
+            margin: 25px auto;
             text-align: center;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
         }
-        .error-img { width: 70px; height: auto; margin-bottom: 10px; }
-        .error-text { font-size: 20px; color: #000; }
-        .try-again { color: #330066; text-decoration: underline; cursor: pointer; }
-
-        /* ======================================================= */
-        /* 📱 REAL MOBILE OPTIMIZATION (No Desktop Mode Needed) */
-        /* ======================================================= */
-        @media only screen and (max-width: 768px) {
-            .content-area {
-                padding: 0 12px; 
-            }
-            
-            /* 🎯 মোবাইল স্ক্রিনে লেখা অটো সাইজ হয়ে ১ লাইনে লক থাকবে */
-            .instruction {
-                font-size: 12px !important; 
-                white-space: nowrap !important; 
-                margin-top: 8px !important;
-                margin-bottom: 12px !important;
-            }
-            
-            /* সার্চ বক্স মোবাইলে বড় এবং সুন্দর দেখাবে */
-            .search-box { 
-                margin: 25px 0;
-                font-size: 18px; 
-                flex-direction: row;
-                flex-wrap: nowrap;
-                gap: 5px;
-            }
-            input[type="text"] { 
-                width: 55% !important; 
-                font-size: 16px; 
-                padding: 8px; 
-            }
-            button { 
-                width: 35% !important; 
-                font-size: 14px; 
-                padding: 8px 5px; 
-                margin-left: 0;
-                white-space: nowrap;
-            }
-            .label-text { font-size: 18px; }
-            
-            /* টেবিল হেডার রেসপন্সিভ */
-            .details-header {
-                width: 100% !important;
-                margin-bottom: 15px;
-            }
-            .details-title { font-size: 18px; }
-            .back-home { font-size: 16px; }
-
-            /* টেবিল বক্সটি মোবাইলের পুরো স্ক্রিন জুড়ে বড় বড় অক্ষরে আসবে */
-            .table-container { 
-                padding: 15px 10px !important; 
-                border-radius: 15px !important; 
-                width: 100% !important; 
-                border: 2px solid #000;
-            }
-            .result-table td { 
-                font-size: 15px !important; 
-                padding: 10px 2px !important; 
-            }
-            .result-table td.field-name { width: 40%; }
-            .result-table td.field-value { width: 60%; padding-left: 8px; }
-            
-            .contact-divider { width: 100% !important; } 
-            .genuine-notice { font-size: 14px; padding: 0; }
-            .duration-container { gap: 4px; }
-            
-            .error-container { flex-direction: column; }
-            .error-img { width: 50px; }
-            .error-text { font-size: 15px; }
-            
-            .contact-title { font-size: 18px; }
-            .contact-details { font-size: 15px; }
-        }
+        .error-img { width: 50px; height: auto; margin-bottom: 10px; }
+        .error-text { font-size: 15px; color: #000; line-height: 1.4; }
+        .try-again { color: #330066; text-decoration: underline; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -331,6 +284,7 @@
     </div>
 
     <script>
+        // আপনার সচল Apps Script URL এখানে অলরেডি সেট করা আছে
         const appsScriptUrl = "https://script.google.com/macros/s/AKfycbylJixwOEQuwngTgUZcrtlI02vPVno2bf5D3ia16iBzdgtlkGg7l7Om5k4rPUDmQH_J/exec";
 
         function formatDate(dateStr) {
@@ -378,8 +332,7 @@
                     document.getElementById('r_comp').innerText = certData.comp || '';
                     document.getElementById('r_cert_type').innerText = certData.cert_type || '';
 
-                    container.style.style.display = "block";
-                    container.style.width = "100%";
+                    container.style.display = "block";
                     header.style.display = "flex";
                     contact.style.display = "block";
                     genuineNotice.style.display = "block";
