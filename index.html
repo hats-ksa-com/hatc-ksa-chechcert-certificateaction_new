@@ -19,7 +19,7 @@
             width: 100% !important;
             max-width: 1200px !important; 
             margin: 0 auto !important;
-            padding: 10px 0px !important; /* দুই পাশের প্যাডিং জিরো করা হয়েছে লোগোর জন্য */
+            padding: 10px 0px !important; 
             box-sizing: border-box !important;
         }
 
@@ -39,7 +39,7 @@
             height: 4px; 
             background-color: #808080; 
             width: 100%; 
-            margin-top: 0px; /* লোগোর সাথে মিশে থাকার জন্য মার্জিন ০ */
+            margin-top: 0px; 
             margin-bottom: 25px;
         }
         
@@ -63,7 +63,7 @@
             margin-bottom: 25px;
         }
 
-        /* কনটেন্ট এরিয়াতে সামান্য প্যাডিং যেন টেবিল ও টেক্সট স্ক্রিনের সাথে লেগে না যায় */
+        /* কনটেন্ট এরিয়া (টেবিল ও সার্চ বক্সের জন্য সাইড স্পেস) */
         .content-area {
             padding: 0 20px;
             box-sizing: border-box;
@@ -173,7 +173,7 @@
         /* 📱 Mobile CSS Optimization */
         @media only screen and (max-width: 768px) {
             .wrapper { 
-                padding: 0px 0px 10px 0px !important; /* টপ ও সাইড প্যাডিং সম্পূর্ণ জিরো */
+                padding: 0px 0px 10px 0px !important; 
             }
             .top-logo {
                 width: 100% !important;
@@ -181,13 +181,13 @@
                 margin: 0 !important;
             }
             .content-area {
-                padding: 0 10px; /* মোবাইলে ভেতরের কনটেন্টের জন্য সাইড স্পেস */
+                padding: 0 10px; 
             }
             
-            /* 🎯 লেখাকে আরও ১ সাইজ ছোট করে সম্পূর্ণ এক লাইনে রাখার আলটিমেট ফিক্স */
+            /* 🎯 লেখা ১ লাইনে লক করার চূড়ান্ত ফিক্স (ফন্ট সাইজ একদম ছোট করা হলো) */
             .instruction {
-                font-size: 1.7vw !important; /* আগের চেয়ে আরও ছোট সাইজ করা হলো যেন নিখুঁতভাবে ধরে যায় */
-                white-space: nowrap !important; /* লাইন ভাঙবে না */
+                font-size: 8px !important; /* লেখা ছোট করে স্ক্রিনে ১ লাইনে ফিট করা হলো */
+                white-space: nowrap !important; /* কোনো অবস্থাতেই ভেঙে নিচে যাবে না */
                 display: block !important;
                 width: 100% !important;
                 padding: 0 !important;
@@ -333,7 +333,7 @@
             if(!input) { alert("Please enter a Certificate Number"); return; }
 
             try {
-                // 🚀 স্পিড বাড়ানোর জন্য "cache: 'force-cache'" এবং টাইমস্ট্যাম্প বাইপাস মেকানিজম ব্যবহার করা হয়েছে
+                // সুপার ফাস্ট লোডিং মেকানিজম
                 const response = await fetch(`${appsScriptUrl}?cno=${encodeURIComponent(input)}`, {
                     method: 'GET',
                     mode: 'cors',
