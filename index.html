@@ -72,7 +72,7 @@
             justify-content: space-between; 
             align-items: center;
             margin-bottom: 25px;
-            width: 90%; /* 👈 টেবিলের সাথে ম্যাচ করে হেডারও ৮৫% করা হলো */
+            width: 85%; 
             margin-left: auto;
             margin-right: auto;
         }
@@ -84,37 +84,62 @@
             display: none;
             border: 2px solid #000;
             border-radius: 35px; 
-            padding: 25px 40px;
+            padding: 30px 40px;
             box-sizing: border-box !important;
             background: #fff;
-            width: 85% !important; /* 👈 আপনার কথা অনুযায়ী দুই পাশ থেকে হালকা বাড়িয়ে ৮৫% করা হলো, দুই পাশে সমান ফাঁকা থাকবে */
+            width: 85% !important; 
             margin: 0 auto !important; 
         }
 
-        /* 🎯 Table Styling */
+        /* 🎯 Table Styling - No full row border */
         .result-table { 
             width: 100% !important; 
             border-collapse: collapse; 
         }
         
         .result-table tr { 
-            border-bottom: 2px solid #808080 !important; 
+            border-bottom: none !important; 
         } 
         
         .result-table td { 
-            padding: 10px 5px; 
+            padding: 15px 5px; 
             font-size: 22px; 
             color: #000; 
             vertical-align: bottom; 
             font-weight: normal !important; 
             box-sizing: border-box; 
-            text-align: left !important; 
         }
         
-        .result-table td.field-name { width: 35%; font-weight: bold !important; } 
-        .result-table td.field-value { width: 65%; padding-left: 15px; word-break: break-word; }
+        /* 🎯 বাম পাশের লেখা ডান দিকে মিলবে এবং শুধু লেখার নিচে দাগ থাকবে */
+        .result-table td.field-name { 
+            width: 50% !important; 
+            font-weight: bold !important; 
+            text-align: right !important; 
+            padding-right: 25px !important; 
+        } 
         
-        .duration-container { display: flex; gap: 10px; width: 100%; text-align: left; flex-wrap: wrap; font-weight: normal !important; }
+        /* 🎯 ডান পাশের লেখা বাম দিকে মিলবে এবং শুধু লেখার নিচে দাগ থাকবে */
+        .result-table td.field-value { 
+            width: 50% !important; 
+            text-align: left !important; 
+            padding-left: 25px !important; 
+            word-break: break-word; 
+        }
+
+        /* 📏 🎯 শুধুমাত্র যতটুকু জায়গায় লেখা আছে, ঠিক ততটুকুর নিচেই ছাই রঙের দাগ বসানোর মেইন ট্রিক */
+        .underlined-text {
+            display: inline-block;
+            border-bottom: 2px solid #808080 !important;
+            padding-bottom: 4px;
+        }
+        
+        .duration-container { 
+            display: inline-flex; 
+            gap: 10px; 
+            text-align: left; 
+            flex-wrap: wrap; 
+            font-weight: normal !important; 
+        }
         
         /* 📜 Genuine Notice */
         .genuine-notice {
@@ -133,7 +158,7 @@
             border: 0;
             height: 2px;
             background-color: #808080; 
-            width: 85%; /* 👈 ডিভাইডার লাইনটিও টেবিলের সমান চওড়া করা হলো */
+            width: 85%; 
             margin: 0 auto 25px auto;
         }
 
@@ -188,22 +213,54 @@
 
         <div class="table-container" id="tableContainer">
             <table class="result-table">
-                <tr><td class="field-name">C. No</td><td class="field-value" id="r_cno"></td></tr>
-                <tr><td class="field-name">Name</td><td class="field-value" id="r_name"></td></tr>
-                <tr><td class="field-name">ID/PP NO</td><td class="field-value" id="r_id"></td></tr>
-                <tr><td class="field-name">Date of Birth</td><td class="field-value" id="r_dob"></td></tr>
-                <tr><td class="field-name">Course Title</td><td class="field-value" id="r_title"></td></tr>
-                <tr><td class="field-name">Course Type</td><td class="field-value" id="r_type"></td></tr>
-                <tr><td class="field-name">Duration</td><td class="field-value">
-                    <div class="duration-container">
-                        <span id="r_from"></span>
-                        <span>To</span>
-                        <span id="r_to"></span>
-                    </div>
-                </td></tr>
-                <tr><td class="field-name">Nationality</td><td class="field-value" id="r_nation"></td></tr>
-                <tr><td class="field-name">Company</td><td class="field-value" id="r_comp"></td></tr>
-                <tr><td class="field-name">Certificate Type</td><td class="field-value" id="r_cert_type"></td></tr>
+                <tr>
+                    <td class="field-name"><span class="underlined-text">C. No</span></td>
+                    <td class="field-value"><span class="underlined-text" id="r_cno"></span></td>
+                </tr>
+                <tr>
+                    <td class="field-name"><span class="underlined-text">Name</span></td>
+                    <td class="field-value"><span class="underlined-text" id="r_name"></span></td>
+                </tr>
+                <tr>
+                    <td class="field-name"><span class="underlined-text">ID/PP NO</span></td>
+                    <td class="field-value"><span class="underlined-text" id="r_id"></span></td>
+                </tr>
+                <tr>
+                    <td class="field-name"><span class="underlined-text">Date of Birth</span></td>
+                    <td class="field-value"><span class="underlined-text" id="r_dob"></span></td>
+                </tr>
+                <tr>
+                    <td class="field-name"><span class="underlined-text">Course Title</span></td>
+                    <td class="field-value"><span class="underlined-text" id="r_title"></span></td>
+                </tr>
+                <tr>
+                    <td class="field-name"><span class="underlined-text">Course Type</span></td>
+                    <td class="field-value"><span class="underlined-text" id="r_type"></span></td>
+                </tr>
+                <tr>
+                    <td class="field-name"><span class="underlined-text">Duration</span></td>
+                    <td class="field-value">
+                        <span class="underlined-text">
+                            <div class="duration-container">
+                                <span id="r_from"></span>
+                                <span>To</span>
+                                <span id="r_to"></span>
+                            </div>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="field-name"><span class="underlined-text">Nationality</span></td>
+                    <td class="field-value"><span class="underlined-text" id="r_nation"></span></td>
+                </tr>
+                <tr>
+                    <td class="field-name"><span class="underlined-text">Company</span></td>
+                    <td class="field-value"><span class="underlined-text" id="r_comp"></span></td>
+                </tr>
+                <tr>
+                    <td class="field-name"><span class="underlined-text">Certificate Type</span></td>
+                    <td class="field-value"><span class="underlined-text" id="r_cert_type"></span></td>
+                </tr>
             </table>
         </div>
 
