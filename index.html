@@ -12,7 +12,7 @@
             width: 100% !important;
             overflow-x: hidden !important;
             -webkit-text-size-adjust: 100%;
-            font-weight: normal !important; /* ডিফল্টভাবে সব লেখা Unbold বা স্বাভাবিক থাকবে */
+            font-weight: normal !important; /* ডিফল্টভাবে সব লেখা Unbold থাকবে */
         }
         
         .wrapper {
@@ -21,6 +21,14 @@
             margin: 0 auto !important;
             padding: 5px 15px !important; 
             box-sizing: border-box !important;
+        }
+
+        /* 🖼️ Header Image Styling */
+        .top-logo {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         /* 📏 Ash Color Bold Header Divider Line */
@@ -35,7 +43,7 @@
         
         .instruction { 
             font-size: 21px; 
-            font-weight: normal !important; /* Unbold করা হলো */
+            font-weight: normal !important; 
             color: #000; 
             margin-top: 5px;
             margin-bottom: 15px; 
@@ -67,8 +75,8 @@
             margin-bottom: 25px;
             width: 100%;
         }
-        .details-title { font-size: 24px; font-weight: 950 !important; color: #000; } /* BOLD রাখা হলো */
-        .back-home { font-size: 23px; font-weight: 950 !important; color: #330066; text-decoration: underline; cursor: pointer; } /* BOLD রাখা হলো */
+        .details-title { font-size: 24px; font-weight: 950 !important; color: #000; } 
+        .back-home { font-size: 23px; font-weight: 950 !important; color: #330066; text-decoration: underline; cursor: pointer; } 
 
         /* 📦 Table Container External Box */
         .table-container {
@@ -90,18 +98,16 @@
             border-collapse: collapse; 
         }
         
-        /* প্রতিটা রো-এর নিচে হুবহু এক সমান লম্বা আন্ডারলাইন */
         .result-table tr { 
             border-bottom: 2px solid #808080 !important; 
         } 
         
-        /* ✍️ টেবিলের ভেতরের লেখা Unbold বা স্বাভাবিক করা হয়েছে */
         .result-table td { 
             padding: 6px 0px 6px 0px; 
             font-size: 22px; 
             color: #000; 
             vertical-align: bottom; 
-            font-weight: normal !important; /* Unbold করা হলো */
+            font-weight: normal !important; 
             box-sizing: border-box; 
             text-align: left !important; 
         }
@@ -111,11 +117,11 @@
         
         .duration-container { display: flex; gap: 10px; width: 100%; text-align: left; flex-wrap: wrap; font-weight: normal !important; }
         
-        /* 📜 Genuine Notice টেক্সট Unbold করা হয়েছে */
+        /* 📜 Genuine Notice */
         .genuine-notice {
             display: none;
             font-size: 20px; 
-            font-weight: normal !important; /* Unbold করা হলো */
+            font-weight: normal !important; 
             color: #000;
             margin-top: 25px;
             margin-bottom: 25px;
@@ -139,8 +145,8 @@
             text-align: center;
             width: 100%;
         }
-        .contact-title { font-size: 25px; font-weight: 950 !important; color: #000; margin-bottom: 15px; } /* BOLD রাখা হলো */
-        .contact-details { font-size: 21px; color: #000; line-height: 1.6; font-weight: normal !important; } /* Unbold করা হলো */
+        .contact-title { font-size: 25px; font-weight: 950 !important; color: #000; margin-bottom: 15px; } 
+        .contact-details { font-size: 21px; color: #000; line-height: 1.6; font-weight: normal !important; } 
         .contact-details a { color: blue; text-decoration: underline; font-weight: normal !important; }
 
         .error-container {
@@ -175,7 +181,7 @@
             
             .table-container { padding: 15px 10px; border-radius: 15px; width: 100% !important; }
             .result-table { width: 100% !important; margin-right: 0 !important; } 
-            .result-table td { font-size: 16px; padding: 6px 2px; font-weight: normal !important; }
+            .result-table td { font-size: 16px; padding: 6px 2px; font-weight: normal !important; font-weight: normal !important; }
             
             .contact-divider { width: 100% !important; } 
             
@@ -195,6 +201,8 @@
 <body>
 
     <div class="wrapper">
+        
+        <img src="HEADER.PNG" class="top-logo" alt="Institute Logo">
         
         <hr class="header-divider">
 
@@ -259,7 +267,7 @@
     </div>
 
     <script>
-        // ⚠️ আপনার Apps Script Web App URL টি এখানে বসাবেন
+        // ⚠️ আপনার Apps Script Web App URL টি নিচের উদ্ধৃতি চিহ্নের ভেতরে বসাবেন
         const appsScriptUrl = "https://script.google.com/macros/s/AKfycbylJixwOEQuwngTgUZcrtlI02vPVno2bf5D3ia16iBzdgtlkGg7l7Om5k4rPUDmQH_J/exec";
 
         function formatDate(dateStr) {
