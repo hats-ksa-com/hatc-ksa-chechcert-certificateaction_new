@@ -1,68 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Certificate Verification</title>
     <style>
-        /* 🎨 মোবাইল-ফাস্ট গ্লোবাল স্টাইল */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
         html, body { 
             font-family: "Times New Roman", Times, serif; 
             text-align: center; 
-            background-color: #ffffff; 
-            width: 100%;
-            overflow-x: hidden; /* স্ক্রিন যেন ডানে-বামে কাপাকাপি না করে */
+            background-color: #ffffff !important; 
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            overflow-x: hidden !important;
             -webkit-text-size-adjust: 100%;
+            font-weight: normal !important;
         }
         
         .wrapper {
-            width: 100%;
-            max-width: 480px; /* একটি আদর্শ মোবাইল স্ক্রিনের সর্বোচ্চ উইডথ */
-            margin: 0 auto;
-            padding: 0 0 20px 0; 
+            width: 100% !important;
+            max-width: 1200px !important; 
+            margin: 0 auto !important;
+            padding: 10px 20px !important; 
+            box-sizing: border-box !important;
         }
 
-        /* 🖼️ পিওর মোবাইল লোগো (ফুল স্ক্রিন উইডথ, দুই পাশে কোনো গ্যাপ থাকবে না) */
+        /* 🖼️ Responsive Header Image */
         .top-logo {
             display: block;
-            width: 100%;
+            max-width: 100%;
             height: auto;
-            margin: 0;
-            padding: 0;
+            margin: 15px auto;
         }
 
-        /* 📏 মোটা ছাই রঙের ডিভাইডার লাইন */
+        /* 📏 Ash Color Bold Header Divider Line */
         .header-divider {
             border: 0;
             height: 4px; 
             background-color: #808080; 
             width: 100%; 
-            margin: 0 0 15px 0;
-        }
-
-        /* কনটেন্ট এরিয়া (মোবাইলের দুই পাশে হালকা একটু মার্জিন রাখবে) */
-        .content-area {
-            padding: 0 12px;
-            width: 100%;
+            margin-top: 5px;
+            margin-bottom: 25px;
         }
         
-        /* 🎯 ইনস্ট্রাকশন টেক্সট - মোবাইলে ১২ পিক্সেল সাইজে একদম ভেঙে না গিয়ে ১ লাইনে লক থাকবে */
         .instruction { 
-            font-size: 12px !important; 
+            font-size: 21px; 
+            font-weight: normal !important; 
             color: #000; 
             margin-top: 5px;
-            margin-bottom: 12px; 
+            margin-bottom: 15px; 
             display: block;
             width: 100%;
-            white-space: nowrap !important; 
-            overflow: visible;
-            text-align: center;
+            line-height: 1.5;
+            white-space: nowrap; /* ডেস্কটপে এক লাইনে রাখবে */
         }
         
         .top-divider {
@@ -70,149 +58,166 @@
             height: 2px;
             background-color: #000; 
             width: 100%; 
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        /* 🔍 মোবাইল ফ্রেন্ডলি সার্চ বক্স (পাশাপাশি পারফেক্ট ফিট) */
-        .search-box { 
-            margin: 20px 0; 
-            width: 100%; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-        
-        .label-text { 
-            font-size: 18px; 
-            font-family: "Times New Roman";
-            font-weight: bold;
-        }
-        
-        input[type="text"] { 
-            padding: 10px 8px; 
-            width: 50%; /* মোবাইলের অর্ধেক জায়গা ইনপুট বক্স নিবে */
-            border: 1px solid #7f7f7f; 
-            font-size: 16px; 
-            font-family: "Times New Roman"; 
-            outline: none;
-        }
-        
-        button { 
-            padding: 10px 4px; 
-            width: 38%; /* বাকি জায়গা বাটন নিবে */
-            background-color: #f2f2f2; 
-            border: 1px solid #7f7f7f; 
-            cursor: pointer; 
-            font-size: 14px; 
-            font-family: "Times New Roman"; 
-            color: #000; 
-            white-space: nowrap;
-        }
+        .search-box { margin-bottom: 30px; font-size: 20px; width: 100%; font-weight: normal; }
+        input[type="text"] { padding: 8px 10px; width: 280px; max-width: 50%; border: 1px solid #7f7f7f; font-size: 18px; font-family: "Times New Roman"; font-weight: normal; vertical-align: middle; box-sizing: border-box; }
+        button { padding: 8px 15px; background-color: #f2f2f2; border: 1px solid #7f7f7f; cursor: pointer; font-size: 18px; margin-left: 5px; font-family: "Times New Roman"; font-weight: normal !important; vertical-align: middle; color: #000; box-sizing: border-box; }
         button:hover { background-color: #e6e6e6; }
+        .label-text { font-size: 20px; font-weight: normal !important; margin-right: 8px; font-family: "Times New Roman"; }
         
-        /* 🔄 টেবিল হেডার ও ব্যাক বাটন */
+        /* 🔄 Details & Back to Home */
         .details-header {
             display: none;
             justify-content: space-between; 
             align-items: center;
-            margin: 0 auto 15px auto;
-            width: 100%;
+            margin-bottom: 25px;
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .details-title { font-size: 18px; font-weight: bold; color: #000; } 
-        .back-home { font-size: 15px; font-weight: bold; color: #330066; text-decoration: underline; cursor: pointer; } 
+        .details-title { font-size: 24px; font-weight: 950 !important; color: #000; } 
+        .back-home { font-size: 23px; font-weight: 950 !important; color: #330066; text-decoration: underline; cursor: pointer; } 
 
-        /* 📦 রেজাল্ট টেবিল কন্টেইনার (মোবাইল স্ক্রিনে ১০০% ফিট হয়ে বড় দেখাবে) */
+        /* 📦 Table Container External Box */
         .table-container {
             display: none;
             border: 2px solid #000;
-            border-radius: 15px; 
-            padding: 12px 10px;
+            border-radius: 35px; 
+            padding: 25px 40px;
+            box-sizing: border-box !important;
             background: #fff;
-            width: 100%; 
-            margin: 0 auto; 
+            width: 70% !important; 
+            margin: 0 auto !important; 
         }
 
-        /* 🎯 টেবিল ডিজাইন */
+        /* 🎯 Table Styling */
         .result-table { 
-            width: 100%; 
+            width: 100% !important; 
             border-collapse: collapse; 
         }
         
         .result-table tr { 
-            border-bottom: 2px solid #808080; 
+            border-bottom: 2px solid #808080 !important; 
         } 
         
         .result-table td { 
-            padding: 10px 2px; 
-            font-size: 15px; /* মোবাইলে পড়ার জন্য একদম ক্লিয়ার সাইজ */
+            padding: 10px 5px; 
+            font-size: 22px; 
             color: #000; 
             vertical-align: bottom; 
-            text-align: left; 
+            font-weight: normal !important; 
+            box-sizing: border-box; 
+            text-align: left !important; 
         }
         
-        .result-table td.field-name { 
-            width: 38%; 
-            font-weight: bold; 
-        } 
+        .result-table td.field-name { width: 35%; font-weight: bold !important; } 
+        .result-table td.field-value { width: 65%; padding-left: 15px; word-break: break-word; }
         
-        .result-table td.field-value { 
-            width: 62%; 
-            padding-left: 6px; 
-            word-break: break-word; /* লেখা বড় হলে নিচে নামবে, টেবিল ভাঙবে না */
-        }
+        .duration-container { display: flex; gap: 10px; width: 100%; text-align: left; flex-wrap: wrap; font-weight: normal !important; }
         
-        .duration-container { 
-            display: flex; 
-            gap: 4px; 
-            width: 100%; 
-            text-align: left; 
-            flex-wrap: wrap; 
-        }
-        
-        /* 📜 জেনুইন নোটিশ */
+        /* 📜 Genuine Notice */
         .genuine-notice {
             display: none;
-            font-size: 14px; 
+            font-size: 20px; 
+            font-weight: normal !important; 
             color: #000;
-            margin: 20px 0;
+            margin-top: 25px;
+            margin-bottom: 25px;
             text-align: center;
             width: 100%;
-            line-height: 1.4;
         }
 
-        /* 📏 কন্টাক্ট ডিভাইডার */
+        /* 📏 Contact section Divider Line */
         .contact-divider {
             border: 0;
             height: 2px;
             background-color: #808080; 
-            width: 100%; 
-            margin: 20px 0;
+            width: 70%; 
+            margin: 0 auto 25px auto;
         }
 
-        /* 📞 কন্টাক্ট সেকশন */
+        /* 📞 Contact Us Section */
         .contact-section {
             display: none;
-            margin-top: 20px;
+            margin-top: 25px;
             text-align: center;
             width: 100%;
         }
-        .contact-title { font-size: 18px; font-weight: bold; color: #000; margin-bottom: 10px; } 
-        .contact-details { font-size: 14px; color: #000; line-height: 1.5; } 
-        .contact-details a { color: blue; text-decoration: underline; }
+        .contact-title { font-size: 25px; font-weight: 950 !important; color: #000; margin-bottom: 15px; } 
+        .contact-details { font-size: 21px; color: #000; line-height: 1.6; font-weight: normal !important; } 
+        .contact-details a { color: blue; text-decoration: underline; font-weight: normal !important; }
 
-        /* ⚠️ এরর বক্স */
         .error-container {
             display: none;
-            margin: 25px auto;
-            text-align: center;
+            margin: 30px auto;
+            text-align: left;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
+            white-space: nowrap;
+            font-weight: normal !important;
         }
-        .error-img { width: 50px; height: auto; margin-bottom: 10px; }
-        .error-text { font-size: 15px; color: #000; line-height: 1.4; }
-        .try-again { color: #330066; text-decoration: underline; cursor: pointer; font-weight: bold; }
+        .error-img { width: 70px; height: auto; margin-right: 12px; flex-shrink: 0; }
+        .error-text { font-size: 20px; color: #000; font-weight: normal !important; }
+        .try-again { color: #330066; text-decoration: underline; cursor: pointer; font-weight: normal !important; }
+
+        /* 📱 Mobile CSS Optimization */
+        @media only screen and (max-width: 768px) {
+            .wrapper { 
+                padding: 5px 5px !important; 
+            }
+            .top-logo {
+                max-width: 100% !important;
+                height: auto !important;
+                margin: 10px auto !important;
+            }
+            
+            /* 🎯 মোবাইল স্ক্রিনে লেখাকে জোরপূর্বক ১ লাইনে রাখার রুলস */
+            .instruction {
+                font-size: 2.3vw !important; /* স্ক্রিনের চওড়া অনুযায়ী ফন্ট অটো ছোট-বড় হবে */
+                white-space: nowrap !important; /* কোনোভাবেই ভেঙে ২ লাইনে যাবে না */
+                overflow: hidden !important;
+                text-overflow: clip !important;
+                padding: 0 !important;
+                margin-bottom: 15px !important;
+            }
+            
+            .search-box { margin-bottom: 25px; font-size: 18px; }
+            input[type="text"] { width: 140px; font-size: 16px; max-width: 50%; padding: 6px 8px; }
+            button { padding: 6px 10px; font-size: 16px; margin-left: 2px; }
+            .label-text { font-size: 18px; margin-right: 4px; }
+            
+            .details-header {
+                width: 100% !important;
+                gap: 10px;
+            }
+            .details-title { font-size: 18px; }
+            .back-home { font-size: 16px; }
+
+            .table-container { 
+                padding: 15px 12px !important; 
+                border-radius: 15px !important; 
+                width: 100% !important; 
+            }
+            .result-table td { 
+                font-size: 15px !important; 
+                padding: 8px 2px !important; 
+            }
+            .result-table td.field-name { width: 40%; }
+            .result-table td.field-value { width: 60%; padding-left: 5px; }
+            
+            .contact-divider { width: 100% !important; } 
+            .genuine-notice { font-size: 15px; padding: 0 5px; }
+            .duration-container { gap: 3px; }
+            
+            .error-container { white-space: normal; flex-direction: column; text-align: center; }
+            .error-img { margin-right: 0; margin-bottom: 10px; width: 50px; }
+            .error-text { font-size: 15px; }
+            
+            .contact-title { font-size: 19px; }
+            .contact-details { font-size: 15px; }
+        }
     </style>
 </head>
 <body>
@@ -223,68 +228,66 @@
         
         <hr class="header-divider">
 
-        <div class="content-area">
-            <div id="noticeArea">
-                <div class="instruction">This search engine will help you to find out whether the certificate is true or not, please enter C. No (Certificate No).</div>
-                <hr class="top-divider">
-            </div>
+        <div id="noticeArea">
+            <div class="instruction">This search engine will help you to find out whether the certificate is true or not, please enter C. No (Certificate No).</div>
+            <hr class="top-divider">
+        </div>
 
-            <div class="search-box" id="searchBoxArea">
-                <span class="label-text">C.No</span>
-                <input type="text" id="certInput" placeholder="" onkeypress="handleKeyPress(event)">
-                <button onclick="checkCertificate()">check certificate</button>
-            </div>
+        <div class="search-box" id="searchBoxArea">
+            <span class="label-text">C.No</span>
+            <input type="text" id="certInput" placeholder="" onkeypress="handleKeyPress(event)">
+            <button onclick="checkCertificate()">check certificate</button>
+        </div>
 
-            <div class="details-header" id="detHeader">
-                <div class="details-title">Details Below:</div>
-                <div class="back-home" onclick="resetSearch()">Back To Home Page</div>
-            </div>
+        <div class="details-header" id="detHeader">
+            <div class="details-title">Details Below:</div>
+            <div class="back-home" onclick="resetSearch()">Back To Home Page</div>
+        </div>
 
-            <div class="table-container" id="tableContainer">
-                <table class="result-table">
-                    <tr><td class="field-name">C. No</td><td class="field-value" id="r_cno"></td></tr>
-                    <tr><td class="field-name">Name</td><td class="field-value" id="r_name"></td></tr>
-                    <tr><td class="field-name">ID/PP NO</td><td class="field-value" id="r_id"></td></tr>
-                    <tr><td class="field-name">Date of Birth</td><td class="field-value" id="r_dob"></td></tr>
-                    <tr><td class="field-name">Course Title</td><td class="field-value" id="r_title"></td></tr>
-                    <tr><td class="field-name">Course Type</td><td class="field-value" id="r_type"></td></tr>
-                    <tr><td class="field-name">Duration</td><td class="field-value">
-                        <div class="duration-container">
-                            <span id="r_from"></span>
-                            <span>To</span>
-                            <span id="r_to"></span>
-                        </div>
-                    </td></tr>
-                    <tr><td class="field-name">Nationality</td><td class="field-value" id="r_nation"></td></tr>
-                    <tr><td class="field-name">Company</td><td class="field-value" id="r_comp"></td></tr>
-                    <tr><td class="field-name">Certificate Type</td><td class="field-value" id="r_cert_type"></td></tr>
-                </table>
-            </div>
+        <div class="table-container" id="tableContainer">
+            <table class="result-table">
+                <tr><td class="field-name">C. No</td><td class="field-value" id="r_cno"></td></tr>
+                <tr><td class="field-name">Name</td><td class="field-value" id="r_name"></td></tr>
+                <tr><td class="field-name">ID/PP NO</td><td class="field-value" id="r_id"></td></tr>
+                <tr><td class="field-name">Date of Birth</td><td class="field-value" id="r_dob"></td></tr>
+                <tr><td class="field-name">Course Title</td><td class="field-value" id="r_title"></td></tr>
+                <tr><td class="field-name">Course Type</td><td class="field-value" id="r_type"></td></tr>
+                <tr><td class="field-name">Duration</td><td class="field-value">
+                    <div class="duration-container">
+                        <span id="r_from"></span>
+                        <span>To</span>
+                        <span id="r_to"></span>
+                    </div>
+                </td></tr>
+                <tr><td class="field-name">Nationality</td><td class="field-value" id="r_nation"></td></tr>
+                <tr><td class="field-name">Company</td><td class="field-value" id="r_comp"></td></tr>
+                <tr><td class="field-name">Certificate Type</td><td class="field-value" id="r_cert_type"></td></tr>
+            </table>
+        </div>
 
-            <div class="genuine-notice" id="genuineNotice">
-                The above certificate is genuine, and issued by Human Assets Training Institute
-            </div>
+        <div class="genuine-notice" id="genuineNotice">
+            The above certificate is genuine, and issued by Human Assets Training Institute
+        </div>
 
-            <div class="contact-section" id="contactSection">
-                <hr class="contact-divider">
-                <div class="contact-title">Contact us:</div>
-                <div class="contact-details">
-                    Tel: +966 13 849-3360 Fax: +966 13 849-3404<br><br>
-                    E-Mail : <a href="mailto:info@hatc-ksa.com">info@hatc-ksa.com</a>
-                </div>
+        <div class="contact-section" id="contactSection">
+            <hr class="contact-divider">
+            <div class="contact-title">Contact us:</div>
+            <div class="contact-details">
+                Tel: +966 13 849-3360 Fax: +966 13 849-3404<br><br>
+                E-Mail : <a href="mailto:info@hatc-ksa.com">info@hatc-ksa.com</a>
             </div>
+        </div>
 
-            <div class="error-container" id="errorBox">
-                <img src="https://i.imgur.com/vHq7Fv8.png" class="error-img" alt="Warning">
-                <div class="error-text">
-                    Certificate number you entered does not match any certificate, please check C. No and <span class="try-again" onclick="resetSearch()">try again</span>
-                </div>
+        <div class="error-container" id="errorBox">
+            <img src="https://i.imgur.com/vHq7Fv8.png" class="error-img" alt="Warning">
+            <div class="error-text">
+                Certificate number you entered does not match any certificate, please check C. No and <span class="try-again" onclick="resetSearch()">try again</span>
             </div>
         </div>
     </div>
 
     <script>
-        // আপনার সচল Apps Script URL এখানে অলরেডি সেট করা আছে
+        // ⚠️ আপনার Apps Script Web App URL টি নিচের উদ্ধৃতি চিহ্নের ভেতরে বসাবেন
         const appsScriptUrl = "https://script.google.com/macros/s/AKfycbylJixwOEQuwngTgUZcrtlI02vPVno2bf5D3ia16iBzdgtlkGg7l7Om5k4rPUDmQH_J/exec";
 
         function formatDate(dateStr) {
