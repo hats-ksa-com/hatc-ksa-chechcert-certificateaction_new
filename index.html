@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta charset="UTF-8">
+    <title>Certificate Verification</title>
     <style>
         html, body { 
             font-family: "Times New Roman", Times, serif; 
@@ -12,23 +14,23 @@
             width: 100% !important;
             overflow-x: hidden !important;
             -webkit-text-size-adjust: 100%;
-            font-weight: normal !important;
         }
         
         .wrapper {
             width: 100% !important;
-            max-width: 1200px !important; 
+            max-width: 100% !important; 
             margin: 0 auto !important;
-            padding: 10px 20px !important; 
+            padding: 0 !important; 
             box-sizing: border-box !important;
         }
 
-        /* 🖼️ Responsive Header Image */
+        /* 🖼️ Responsive Header Image - দুই পাশে কোনো ফাঁকা থাকবে না */
         .top-logo {
             display: block;
-            max-width: 100%;
-            height: auto;
-            margin: 15px auto;
+            width: 100% !important;
+            height: auto !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         /* 📏 Ash Color Bold Header Divider Line */
@@ -37,13 +39,19 @@
             height: 4px; 
             background-color: #808080; 
             width: 100%; 
-            margin-top: 5px;
-            margin-bottom: 25px;
+            margin: 0px 0px 20px 0px !important;
+        }
+
+        /* কনটেন্ট এরিয়া */
+        .content-area {
+            padding: 0 15px;
+            box-sizing: border-box;
+            width: 100%;
         }
         
+        /* 🎯 ডেস্কটপের জন্য ইনস্ট্রাকশন টেক্সট */
         .instruction { 
             font-size: 21px; 
-            font-weight: normal !important; 
             color: #000; 
             margin-top: 5px;
             margin-bottom: 15px; 
@@ -61,26 +69,49 @@
             margin-bottom: 25px;
         }
 
-        .search-box { margin-bottom: 30px; font-size: 20px; width: 100%; font-weight: normal; }
-        input[type="text"] { padding: 8px 10px; width: 280px; max-width: 50%; border: 1px solid #7f7f7f; font-size: 18px; font-family: "Times New Roman"; font-weight: normal; vertical-align: middle; box-sizing: border-box; }
-        button { padding: 8px 15px; background-color: #f2f2f2; border: 1px solid #7f7f7f; cursor: pointer; font-size: 18px; margin-left: 5px; font-family: "Times New Roman"; font-weight: normal !important; vertical-align: middle; color: #000; box-sizing: border-box; }
+        /* 🔍 Search Box Styling */
+        .search-box { 
+            margin: 20px 0 30px 0; 
+            font-size: 22px; 
+            width: 100%; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        input[type="text"] { 
+            padding: 10px 12px; 
+            width: 280px; 
+            border: 1px solid #7f7f7f; 
+            font-size: 18px; 
+            font-family: "Times New Roman"; 
+            box-sizing: border-box; 
+        }
+        button { 
+            padding: 10px 20px; 
+            background-color: #f2f2f2; 
+            border: 1px solid #7f7f7f; 
+            cursor: pointer; 
+            font-size: 18px; 
+            font-family: "Times New Roman"; 
+            color: #000; 
+            box-sizing: border-box; 
+        }
         button:hover { background-color: #e6e6e6; }
-        .label-text { font-size: 20px; font-weight: normal !important; margin-right: 8px; font-family: "Times New Roman"; }
+        .label-text { font-size: 22px; font-family: "Times New Roman"; }
         
         /* 🔄 Details & Back to Home */
         .details-header {
             display: none;
             justify-content: space-between; 
             align-items: center;
-            margin-bottom: 25px;
+            margin: 0 auto 25px auto;
             width: 70%;
-            margin-left: auto;
-            margin-right: auto;
         }
-        .details-title { font-size: 24px; font-weight: 950 !important; color: #000; } 
-        .back-home { font-size: 23px; font-weight: 950 !important; color: #330066; text-decoration: underline; cursor: pointer; } 
+        .details-title { font-size: 24px; font-weight: bold; color: #000; } 
+        .back-home { font-size: 23px; font-weight: bold; color: #330066; text-decoration: underline; cursor: pointer; } 
 
-        /* 📦 Table Container External Box */
+        /* 📦 Table Container External Box (Desktop) */
         .table-container {
             display: none;
             border: 2px solid #000;
@@ -103,11 +134,10 @@
         } 
         
         .result-table td { 
-            padding: 10px 5px; 
+            padding: 12px 5px; 
             font-size: 22px; 
             color: #000; 
             vertical-align: bottom; 
-            font-weight: normal !important; 
             box-sizing: border-box; 
             text-align: left !important; 
         }
@@ -115,13 +145,12 @@
         .result-table td.field-name { width: 35%; font-weight: bold !important; } 
         .result-table td.field-value { width: 65%; padding-left: 15px; word-break: break-word; }
         
-        .duration-container { display: flex; gap: 10px; width: 100%; text-align: left; flex-wrap: wrap; font-weight: normal !important; }
+        .duration-container { display: flex; gap: 10px; width: 100%; text-align: left; flex-wrap: wrap; }
         
         /* 📜 Genuine Notice */
         .genuine-notice {
             display: none;
             font-size: 20px; 
-            font-weight: normal !important; 
             color: #000;
             margin-top: 25px;
             margin-bottom: 25px;
@@ -145,80 +174,90 @@
             text-align: center;
             width: 100%;
         }
-        .contact-title { font-size: 25px; font-weight: 950 !important; color: #000; margin-bottom: 15px; } 
-        .contact-details { font-size: 21px; color: #000; line-height: 1.6; font-weight: normal !important; } 
-        .contact-details a { color: blue; text-decoration: underline; font-weight: normal !important; }
+        .contact-title { font-size: 25px; font-weight: bold; color: #000; margin-bottom: 15px; } 
+        .contact-details { font-size: 21px; color: #000; line-height: 1.6; } 
+        .contact-details a { color: blue; text-decoration: underline; }
 
         .error-container {
             display: none;
             margin: 30px auto;
-            text-align: left;
+            text-align: center;
             align-items: center;
             justify-content: center;
-            white-space: nowrap;
-            font-weight: normal !important;
         }
-        .error-img { width: 70px; height: auto; margin-right: 12px; flex-shrink: 0; }
-        .error-text { font-size: 20px; color: #000; font-weight: normal !important; }
-        .try-again { color: #330066; text-decoration: underline; cursor: pointer; font-weight: normal !important; }
+        .error-img { width: 70px; height: auto; margin-bottom: 10px; }
+        .error-text { font-size: 20px; color: #000; }
+        .try-again { color: #330066; text-decoration: underline; cursor: pointer; }
 
-        /* 📱 Mobile CSS Optimization */
+        /* ======================================================= */
+        /* 📱 REAL MOBILE OPTIMIZATION (No Desktop Mode Needed) */
+        /* ======================================================= */
         @media only screen and (max-width: 768px) {
-            .wrapper { 
-                padding: 5px 6px !important; 
-            }
-            .top-logo {
-                max-width: 100% !important;
-                height: auto !important;
-                margin: 10px auto !important;
+            .content-area {
+                padding: 0 12px; 
             }
             
-            /* 🎯 লেখা না কেটে এবং নিচে না নেমে স্ক্রিন অনুযায়ী ফন্ট সাইজ অটো ছোট হয়ে এক লাইনে থাকার নিয়ম */
+            /* 🎯 মোবাইল স্ক্রিনে লেখা অটো সাইজ হয়ে ১ লাইনে লক থাকবে */
             .instruction {
-                font-size: 1.8vw !important; /* স্ক্রিনের প্রস্থ অনুযায়ী লেখাটি অটো ছোট হবে যেন এক লাইনে ধরে যায় */
-                white-space: nowrap !important; /* লাইন কখনোই ভাঙবে না বা নিচে নামবে না */
-                display: block !important;
-                width: 100% !important;
-                padding: 0 !important;
-                margin-top: 5px !important;
+                font-size: 12px !important; 
+                white-space: nowrap !important; 
+                margin-top: 8px !important;
                 margin-bottom: 12px !important;
-                overflow: visible !important; /* লেখা কাটবে না */
-                text-overflow: unset !important;
             }
             
-            .search-box { margin-bottom: 25px; font-size: 18px; }
-            input[type="text"] { width: 140px; font-size: 16px; max-width: 50%; padding: 6px 8px; }
-            button { padding: 6px 10px; font-size: 16px; margin-left: 2px; }
-            .label-text { font-size: 18px; margin-right: 4px; }
+            /* সার্চ বক্স মোবাইলে বড় এবং সুন্দর দেখাবে */
+            .search-box { 
+                margin: 25px 0;
+                font-size: 18px; 
+                flex-direction: row;
+                flex-wrap: nowrap;
+                gap: 5px;
+            }
+            input[type="text"] { 
+                width: 55% !important; 
+                font-size: 16px; 
+                padding: 8px; 
+            }
+            button { 
+                width: 35% !important; 
+                font-size: 14px; 
+                padding: 8px 5px; 
+                margin-left: 0;
+                white-space: nowrap;
+            }
+            .label-text { font-size: 18px; }
             
+            /* টেবিল হেডার রেসপন্সিভ */
             .details-header {
                 width: 100% !important;
-                gap: 10px;
+                margin-bottom: 15px;
             }
             .details-title { font-size: 18px; }
             .back-home { font-size: 16px; }
 
+            /* টেবিল বক্সটি মোবাইলের পুরো স্ক্রিন জুড়ে বড় বড় অক্ষরে আসবে */
             .table-container { 
-                padding: 15px 12px !important; 
+                padding: 15px 10px !important; 
                 border-radius: 15px !important; 
                 width: 100% !important; 
+                border: 2px solid #000;
             }
             .result-table td { 
                 font-size: 15px !important; 
-                padding: 8px 2px !important; 
+                padding: 10px 2px !important; 
             }
             .result-table td.field-name { width: 40%; }
-            .result-table td.field-value { width: 60%; padding-left: 5px; }
+            .result-table td.field-value { width: 60%; padding-left: 8px; }
             
             .contact-divider { width: 100% !important; } 
-            .genuine-notice { font-size: 15px; padding: 0 5px; }
-            .duration-container { gap: 3px; }
+            .genuine-notice { font-size: 14px; padding: 0; }
+            .duration-container { gap: 4px; }
             
-            .error-container { white-space: normal; flex-direction: column; text-align: center; }
-            .error-img { margin-right: 0; margin-bottom: 10px; width: 50px; }
+            .error-container { flex-direction: column; }
+            .error-img { width: 50px; }
             .error-text { font-size: 15px; }
             
-            .contact-title { font-size: 19px; }
+            .contact-title { font-size: 18px; }
             .contact-details { font-size: 15px; }
         }
     </style>
@@ -231,66 +270,67 @@
         
         <hr class="header-divider">
 
-        <div id="noticeArea">
-            <div class="instruction">This search engine will help you to find out whether the certificate is true or not, please enter C. No (Certificate No).</div>
-            <hr class="top-divider">
-        </div>
-
-        <div class="search-box" id="searchBoxArea">
-            <span class="label-text">C.No</span>
-            <input type="text" id="certInput" placeholder="" onkeypress="handleKeyPress(event)">
-            <button onclick="checkCertificate()">check certificate</button>
-        </div>
-
-        <div class="details-header" id="detHeader">
-            <div class="details-title">Details Below:</div>
-            <div class="back-home" onclick="resetSearch()">Back To Home Page</div>
-        </div>
-
-        <div class="table-container" id="tableContainer">
-            <table class="result-table">
-                <tr><td class="field-name">C. No</td><td class="field-value" id="r_cno"></td></tr>
-                <tr><td class="field-name">Name</td><td class="field-value" id="r_name"></td></tr>
-                <tr><td class="field-name">ID/PP NO</td><td class="field-value" id="r_id"></td></tr>
-                <tr><td class="field-name">Date of Birth</td><td class="field-value" id="r_dob"></td></tr>
-                <tr><td class="field-name">Course Title</td><td class="field-value" id="r_title"></td></tr>
-                <tr><td class="field-name">Course Type</td><td class="field-value" id="r_type"></td></tr>
-                <tr><td class="field-name">Duration</td><td class="field-value">
-                    <div class="duration-container">
-                        <span id="r_from"></span>
-                        <span>To</span>
-                        <span id="r_to"></span>
-                    </div>
-                </td></tr>
-                <tr><td class="field-name">Nationality</td><td class="field-value" id="r_nation"></td></tr>
-                <tr><td class="field-name">Company</td><td class="field-value" id="r_comp"></td></tr>
-                <tr><td class="field-name">Certificate Type</td><td class="field-value" id="r_cert_type"></td></tr>
-            </table>
-        </div>
-
-        <div class="genuine-notice" id="genuineNotice">
-            The above certificate is genuine, and issued by Human Assets Training Institute
-        </div>
-
-        <div class="contact-section" id="contactSection">
-            <hr class="contact-divider">
-            <div class="contact-title">Contact us:</div>
-            <div class="contact-details">
-                Tel: +966 13 849-3360 Fax: +966 13 849-3404<br><br>
-                E-Mail : <a href="mailto:info@hatc-ksa.com">info@hatc-ksa.com</a>
+        <div class="content-area">
+            <div id="noticeArea">
+                <div class="instruction">This search engine will help you to find out whether the certificate is true or not, please enter C. No (Certificate No).</div>
+                <hr class="top-divider">
             </div>
-        </div>
 
-        <div class="error-container" id="errorBox">
-            <img src="https://i.imgur.com/vHq7Fv8.png" class="error-img" alt="Warning">
-            <div class="error-text">
-                Certificate number you entered does not match any certificate, please check C. No and <span class="try-again" onclick="resetSearch()">try again</span>
+            <div class="search-box" id="searchBoxArea">
+                <span class="label-text">C.No</span>
+                <input type="text" id="certInput" placeholder="" onkeypress="handleKeyPress(event)">
+                <button onclick="checkCertificate()">check certificate</button>
+            </div>
+
+            <div class="details-header" id="detHeader">
+                <div class="details-title">Details Below:</div>
+                <div class="back-home" onclick="resetSearch()">Back To Home Page</div>
+            </div>
+
+            <div class="table-container" id="tableContainer">
+                <table class="result-table">
+                    <tr><td class="field-name">C. No</td><td class="field-value" id="r_cno"></td></tr>
+                    <tr><td class="field-name">Name</td><td class="field-value" id="r_name"></td></tr>
+                    <tr><td class="field-name">ID/PP NO</td><td class="field-value" id="r_id"></td></tr>
+                    <tr><td class="field-name">Date of Birth</td><td class="field-value" id="r_dob"></td></tr>
+                    <tr><td class="field-name">Course Title</td><td class="field-value" id="r_title"></td></tr>
+                    <tr><td class="field-name">Course Type</td><td class="field-value" id="r_type"></td></tr>
+                    <tr><td class="field-name">Duration</td><td class="field-value">
+                        <div class="duration-container">
+                            <span id="r_from"></span>
+                            <span>To</span>
+                            <span id="r_to"></span>
+                        </div>
+                    </td></tr>
+                    <tr><td class="field-name">Nationality</td><td class="field-value" id="r_nation"></td></tr>
+                    <tr><td class="field-name">Company</td><td class="field-value" id="r_comp"></td></tr>
+                    <tr><td class="field-name">Certificate Type</td><td class="field-value" id="r_cert_type"></td></tr>
+                </table>
+            </div>
+
+            <div class="genuine-notice" id="genuineNotice">
+                The above certificate is genuine, and issued by Human Assets Training Institute
+            </div>
+
+            <div class="contact-section" id="contactSection">
+                <hr class="contact-divider">
+                <div class="contact-title">Contact us:</div>
+                <div class="contact-details">
+                    Tel: +966 13 849-3360 Fax: +966 13 849-3404<br><br>
+                    E-Mail : <a href="mailto:info@hatc-ksa.com">info@hatc-ksa.com</a>
+                </div>
+            </div>
+
+            <div class="error-container" id="errorBox">
+                <img src="https://i.imgur.com/vHq7Fv8.png" class="error-img" alt="Warning">
+                <div class="error-text">
+                    Certificate number you entered does not match any certificate, please check C. No and <span class="try-again" onclick="resetSearch()">try again</span>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // ⚠️ আপনার Apps Script Web App URL টি নিচের ফাঁকা ডাবল কোটেশনের ("") ভেতরে বসিয়ে দেবেন
         const appsScriptUrl = "https://script.google.com/macros/s/AKfycbylJixwOEQuwngTgUZcrtlI02vPVno2bf5D3ia16iBzdgtlkGg7l7Om5k4rPUDmQH_J/exec";
 
         function formatDate(dateStr) {
@@ -338,7 +378,8 @@
                     document.getElementById('r_comp').innerText = certData.comp || '';
                     document.getElementById('r_cert_type').innerText = certData.cert_type || '';
 
-                    container.style.display = "block";
+                    container.style.style.display = "block";
+                    container.style.width = "100%";
                     header.style.display = "flex";
                     contact.style.display = "block";
                     genuineNotice.style.display = "block";
