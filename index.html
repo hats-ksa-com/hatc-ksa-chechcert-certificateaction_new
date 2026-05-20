@@ -110,13 +110,14 @@
         } 
         
         .result-table td { 
-            padding: 14px 0px; 
+            padding: 4px 0px !important; /* 👈 এখানে আগে ১৪ পিক্সেল ছিল, কমিয়ে ৪ পিক্সেল করা হলো যা ওপর-নিচের গ্যাপ কমাবে */
             font-size: 22px; 
             color: #000; 
             vertical-align: bottom; 
             font-weight: normal !important; 
             box-sizing: border-box; 
             text-align: left !important; 
+            line-height: 1.1 !important; /* 👈 প্রতিটি লাইনের ভেতরের স্পেস একদম চিপচিপে করার জন্য */
         }
         
         /* 🎯 বাম পাশের কলামের টেক্সট ব্লক */
@@ -124,7 +125,7 @@
             display: block;
             width: 175px !important; 
             border-bottom: 2px solid #808080 !important;
-            padding-bottom: 3px;
+            padding-bottom: 1px; /* 👈 আন্ডারলাইনের সাথে লেখার গ্যাপ ৩ থেকে কমিয়ে ১ পিক্সেল করা হলো */
             white-space: nowrap;
         } 
         
@@ -133,7 +134,7 @@
             display: block;
             width: 480px !important; 
             border-bottom: 2px solid #808080 !important;
-            padding-bottom: 3px;
+            padding-bottom: 1px; /* 👈 আন্ডারলাইনের সাথে লেখার গ্যাপ ৩ থেকে কমিয়ে ১ পিক্সেল করা হলো */
             word-break: break-word;
         }
 
